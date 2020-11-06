@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#define size 10
+using namespace std;
+
+int main()
+{
+  int arr[size];
+   
+  srand(time(NULL));
+  for (int i = 0; i < size; i++)
+  {
+    arr[i] = rand() % 100;
+    printf("%d ", arr[i]);
+  }
+  int max = arr[0];
+
+  for (int i = 0; i < size; ++i) 
+  {
+    if (arr[i] > max) 
+    {
+      max = arr[i];
+    }
+  }
+  printf("%d\n", max);
+
+  int min = arr[0];
+
+  for (int i = 0; i < size; ++i) 
+  {
+    if (arr[i] < min)
+    {
+      min = arr[i];
+    }
+  }
+  printf("%d\n", min);
+
+  double average = 0;
+
+  for (int i = 0; i < size; i++)
+  {
+    average += arr[i];
+  }
+  average /= size;
+  printf("%lf\n", average);
+
+  for (int i = 0; i < size - 1; i++)
+  {
+    for (int j = 0; j < size - i - 1; j++)
+    {
+      if (arr[j] > arr[j + 1])
+      {
+        arr[j] = arr[j] + arr[j + 1];
+        arr[j + 1] = arr[j] - arr[j + 1];
+        arr[j] = arr[j] - arr[j + 1];
+      }
+    }
+
+  printf("\n%d\n", arr[(size / 2)]);
+   
+  return 0;
+}
