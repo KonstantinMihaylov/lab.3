@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#define size 10
+using namespace std;
+
+int main()
+{
+  FILE *f;
+  f = fopen("File.txt", "r");
+  int arr[size];
+  for (int i = 0; i < size; i++)
+  {
+    fscanf(f, "%d,", &arr[i] );
+  }
+
+  for (int i = 0; i < 10; i++)
+  {
+    printf("%d ", arr[i]);
+  }
+  fclose(f);
+  
+  int max = arr[0];
+  for (int i = 0; i < size; ++i) 
+  {
+    if (arr[i] > max) 
+    {
+      max = arr[i];
+    }
+  }
+  printf("%d\n", max);
+
+  int min = arr[0];
+  for (int i = 0; i < size; ++i) 
+  {
+    if (arr[i] < min)
+    {
+      min = arr[i];
+    }
+  }
+  printf("%d\n", min);
+
+  double average = 0;
+  for (int i = 0; i < size; i++)
+  {
+    average += arr[i];
+  }
+  average /= size;
+  printf("%lf\n", average);
+
+  for (int i = 0; i < size - 1; i++)
+  {
+    for (int j = 0; j < size - i - 1; j++)
+    {
+      if (arr[j] > arr[j + 1])
+      {
+        arr[j] = arr[j] + arr[j + 1];
+        arr[j + 1] = arr[j] - arr[j + 1];
+        arr[j] = arr[j] - arr[j + 1];
+      }
+    }
+
+  printf("\n%d\n", arr[(size / 2)]);
+   
+  return 0;
+}
